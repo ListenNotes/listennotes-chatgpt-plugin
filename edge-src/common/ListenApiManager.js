@@ -1,3 +1,5 @@
+import ResponseBuilder from "./ResponseBuilder";
+
 const { ClientForWorkers } = require('podcast-api');
 
 export default class ListenApiManager {
@@ -6,18 +8,12 @@ export default class ListenApiManager {
     this.client = ClientForWorkers({
       apiKey: env.LISTEN_API_KEY || null,
     })
-  }
 
-  _getResponse(resultJson) {
-    return new Response(JSON.stringify(resultJson), {
-      headers: {
-        'content-type': 'application/json;charset=UTF-8',
-      },
-    })
+    this.responseBuilder = new ResponseBuilder(context)
   }
 
   async justListen(transformResultFunc) {
     const res = await this.client.justListen()
-    return this._getResponse(transformResultFunc(res.data))
+    return this.responseBuilder.getJsonResponse(transformResultFunc(res.data))
   }
 }
