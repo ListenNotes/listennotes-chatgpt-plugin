@@ -1,0 +1,441 @@
+openapi: 3.1.0
+info:
+  title: 'Listen Notes Podcast API: Podcast Search, Directory, and Insights API'
+  description: |
+    Simple & no-nonsense podcast search & directory API. Search all podcasts and episodes by people, places, or topics.
+    It's the best one-stop podcast discovery API for podcast search, podcast directory, and podcast insights.
+
+  termsOfService: "https://ai.listennotes.com/legal.txt"
+  contact:
+    name: Listen Notes
+    url: https://www.listennotes.com/api/
+    email: hello@listennotes.com
+  version: "2.0"
+servers:
+- url: https://listen-api.listennotes.com/api/v2
+  description: API Production Server
+tags:
+- name: Search API
+  description: Endpoints to search podcasts
+paths:
+  /search:
+    get:
+      tags:
+      - Search API
+      summary: Full-text search
+      description: |
+        Search podcasts or episodes or curated lists of podcasts.
+        Use the **q** parameter to specify the search keyword.
+      operationId: search
+      parameters:
+      - name: q
+        in: query
+        description: |
+          Search term, e.g., person, place, topic... You can use double quotes to do verbatim match, e.g., "game of thrones". Otherwise, it's fuzzy search.
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: star wars
+      - name: sort_by_date
+        in: query
+        description: |
+          Sort by date or not? If 0, then sort by relevance. If 1, then sort by date.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 0
+          default: 0
+          enum: [0, 1]
+      - name: type
+        in: query
+        description: "What type of contents do you want to search for? \n"
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: episode
+          default: episode
+          enum:
+          - episode
+          - podcast
+          - curated
+      - name: offset
+        in: query
+        description: |
+          Offset for search results, for pagination. You'll use **next_offset** from response for this parameter.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 0
+          default: 0
+      - name: len_min
+        in: query
+        description: |
+          Minimum audio length in minutes. Applicable only when **type** parameter is **episode** or **podcast**.
+          If **type** parameter is **episode**, it's for audio length of an episode.
+          If **type** parameter is **podcast**, it's for average audio length of all episodes in a podcast.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 10
+          default: 0
+      - name: len_max
+        in: query
+        description: |
+          Maximum audio length in minutes. Applicable only when **type** parameter is **episode** or **podcast**.
+          If **type** parameter is **episode**, it's for audio length of an episode.
+          If **type** parameter is **podcast**, it's for average audio length of all episodes in a podcast.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 30
+      - name: episode_count_min
+        in: query
+        description: |
+          Minimum number of episodes. Applicable only when type parameter is **podcast**.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: episode_count_max
+        in: query
+        description: |
+          Maximum number of episodes. Applicable only when type parameter is **podcast**.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: update_freq_min
+        in: query
+        description: |
+          Minimum update frequency in hours (how frequently does a podcast release a new episode). For example, if you want to find "weekly" podcasts, then you can set **update_freq_min**=144 hours (or 6 days) and **update_freq_max**=192 hours (or 8 days). Applicable only when type parameter is **podcast**.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: update_freq_max
+        in: query
+        description: |
+          Maximum update frequency in hours (how frequently does a podcast release a new episode). For example, if you want to find "weekly" podcasts, then you can set **update_freq_min**=144 hours (or 6 days) and **update_freq_max**=192 hours (or 8 days). Applicable only when type parameter is **podcast**.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+      - name: genre_ids
+        in: query
+        description: |
+          A comma-delimited string of a list of genre ids. If not specified, then all genres are included. You can find the id and the name of all genres from `GET /genres`. It works only when **type** is *episode* or *podcast*.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: 68,82
+      - name: published_before
+        in: query
+        description: |
+          Only show episodes/podcasts/curated lists published before this timestamp (in milliseconds). If **published_before** & **published_after** are used at the same time, **published_before** should be bigger than **published_after**.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 1580172454000
+      - name: published_after
+        in: query
+        description: |
+          Only show episodes/podcasts/curated lists published after this timestamp (in milliseconds). If **published_before** & **published_after** are used at the same time, **published_before** should be bigger than **published_after**.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 0
+          default: 0
+      - name: only_in
+        in: query
+        description: |
+          A comma-delimited string to search only in specific fields. Allowed values are title, description, author, and audio. If not specified, then search every fields.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: title,description
+          default: 'title,description,author,audio'
+      - name: language
+        in: query
+        description: |
+          Limit search results to a specific language. If not specified, it'll be any language. You can get a list of supported languages from `GET /languages`. It works only when **type** is *episode* or *podcast*.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          example: English
+      - name: region
+        in: query
+        description: |
+          Limit search results to a specific region (e.g., us, gb, in...). If not specified, it'll be any region. You can get the supported country codes from `GET /regions`. It works only when **type** is *episode* or *podcast*.
+        required: false
+        schema:
+          type: string
+          example: ''
+      - name: ocid
+        in: query
+        description: |
+          A comma-delimited string of podcast ids (up to 5 podcasts) - you can get a podcast id from the **podcast_id** field in response. This parameter is to limit search results from only a few specific podcasts. It works only when **type** is *episode*.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: ncid
+        in: query
+        description: |
+          A comma-delimited string of podcast ids (up to 5 podcasts) - you can get a podcast id from the **podcast_id** field in response. This parameter is to exclude search results of a few specific podcasts. It works only when **type** is *episode*.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+      - name: safe_mode
+        in: query
+        description: |
+          Whether or not to exclude podcasts/episodes with explicit language. 1 is yes and 0 is no. It works only when **type** is *episode* or *podcast*.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          enum: [0, 1]
+          example: 0
+          default: 0
+      - name: unique_podcasts
+        in: query
+        description: |
+          Whether or not to keep only one episode per podcast in search results. 1 is yes and 0 is no. It works only when **type** is *episode*.
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          enum: [0, 1]
+          example: 0
+          default: 0
+      - name: page_size
+        in: query
+        description: |
+          The maximum number of search results per page. A valid value should be an integer between 1 and 10 (inclusive).
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: integer
+          example: 10
+          default: 10
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+          links:
+            paginate:
+              operationId: search
+              parameters:
+                offset: $response.body#/next_offset
+              description: Pagination through search results.
+        400:
+          $ref: '#/components/responses/BadRequest'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /just_listen:
+    get:
+      summary: Fetch a random podcast episode
+      description: Recently published episodes are more likely to be fetched. Good luck!
+      operationId: justListen
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EpisodeSimple'
+        401:
+          $ref: '#/components/responses/Unauthorized'
+        429:
+          $ref: '#/components/responses/TooManyRequests'
+        5XX:
+          $ref: '#/components/responses/ServerError'
+  /genres:
+    get:
+      summary: Fetch a list of podcast genres
+      description: |
+        Get a list of podcast genres that are supported in Listen Notes.
+        The genre id can be passed to other endpoints as a parameter to get podcasts in a specific genre,
+        e.g., `GET /best_podcasts`, `GET /search`...
+        You may want to cache the list of genres on the client side.
+      operationId: getGenres
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                genres:
+                  type: array
+                  items:
+                    type: object
+                    example: { "id": 140, "parent_id": 127, "name": "Web Design" }
+                    properties:
+                      id:
+                        type: integer
+                        description: Genre id that can be used in *genre_id* parameter of GET /best_podcasts, GET /search, etc.
+                        example: 93
+                      name:
+                        type: string
+                        description: Genre name.
+                        example: Business
+                      parent_id:
+                        type: integer
+                        description: Parent genre id.
+                        example: 95
+  /best_podcasts:
+    get:
+      summary: Fetch a list of best podcasts by genre
+      description: |
+        Get a list of curated best podcasts by genre.
+        You can get the genre ids from `GET /genres` endpoint.
+      operationId: getBestPodcasts
+      parameters:
+        name: genre_id
+        in: query
+        description: You can get the id from `GET /genres`. If not specified, it'll be the overall best podcasts, which can be considered as a special genre.
+        required: false
+        schema:
+          type: string
+          example: 93
+components:
+  schemas:
+    EpisodeSimple:
+      type: object
+      properties:
+        title:
+          type: string
+        listennotes_url:
+          $ref: '#/components/schemas/EpisodeLNUrlField'
+    SearchResponse:
+      type: object
+      properties:
+        next_offset:
+          type: integer
+          description: Pass this value to the **offset** parameter to do pagination
+            of search results.
+          example: 10
+        results:
+          type: array
+          description: A list of search results.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/EpisodeSearchResult'
+    EpisodeSearchResult:
+      type: object
+      description: A search result's schema when **type** is *episode*.
+      properties:
+        listennotes_url:
+          $ref: '#/components/schemas/EpisodeLNUrlField'
+        audio:
+          $ref: '#/components/schemas/AudioField'
+        audio_length_sec:
+          $ref: '#/components/schemas/AudioLengthSecField'
+        title_original:
+          type: string
+          description: Plain text of this episode' title
+        description_original:
+          type: string
+          description: Plain text of this episode's description
+        pub_date_ms:
+          $ref: '#/components/schemas/EpisodePubDateMsField'
+        id:
+          $ref: '#/components/schemas/EpisodeIdField'
+    EpisodeLNUrlField:
+      type: string
+      description: The url of this episode
+    AudioField:
+      type: string
+      description: Audio url of this episode, which can be played directly.
+    AudioLengthSecField:
+      type: integer
+      description: Audio length of this episode. In seconds.
+    EpisodePubDateMsField:
+      type: integer
+      description: Published date for this episode. In millisecond.
+    EpisodeIdField:
+      type: string
+      description: Episode id, which can be used to construct the url of this episode, e.g., https://www.listennotes.com/e/{episode_id}/
+
+  parameters:
+    queryParam:
+      name: q
+      in: query
+      description: |
+        Search term, e.g., person, place, topic... You can use double quotes to do verbatim match, e.g., "game of thrones". Otherwise, it's fuzzy search.
+      required: true
+      style: form
+      explode: true
+      schema:
+        type: string
+        example: star wars
+    safeModeParam:
+      name: safe_mode
+      in: query
+      required: false
+      schema:
+        type: integer
+        enum: [0, 1]
+        example: 0
+        default: 0
+      description: "Whether or not to exclude podcasts with explicit language. 1 is yes, and 0 is no."
+
+    genreIdParam:
+      name: genre_id
+      in: query
+      description: You can get the id from `GET /genres`. If not specified, it'll be the overall best podcasts, which can be considered as a special genre.
+      required: false
+      schema:
+        type: string
+        example: 93
+  responses:
+    BadRequest:
+      description: Something wrong on your end (Client side errors), e.g., missing required parameters.
+    NotFound:
+      description: Endpoint not exist, or podcast / episode not exist.
+    Unauthorized:
+      description: Wrong api key, or your account is suspended.
+    TooManyRequests:
+      description: For FREE plan, exceeding the quota limit; or for all plans, sending too many requests too fast and exceeding the rate limit.
+    ServerError:
+      description: Something wrong on our end (Unexpected server errors).
