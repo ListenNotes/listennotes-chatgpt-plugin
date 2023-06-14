@@ -1,0 +1,35 @@
+== Listen Notes ChatGPT Plugin Terms of Use ==
+
+Welcome to Listen Notes! By using our products and services ("Services"), you're agreeing to these terms. Please read them carefully.
+
+Acceptance of Terms: The Services are provided by Listen Notes, Inc. ("Listen Notes"). To use our Services, you must accept all terms outlined in this document and our Privacy Policy.
+
+Usage of Services: Don't misuse our Services. You can only use our Services as permitted by law and as outlined by our provided instructions and interfaces. You don't own the intellectual property rights of our Services or any content you access unless explicitly permitted.
+
+User Content: You own any content you submit through our Services. By submitting, you grant Listen Notes a worldwide license to use, store, reproduce, modify, and distribute your content. This license is for operating and improving our Services.
+
+Software Usage: We grant you a non-exclusive license to use the software provided as part of the Services. This license is solely for using and enjoying the benefit of the Services.
+
+Services Modification: We can modify or terminate our Services at any time. You can stop using our Services at any time.
+
+Liability: When permitted by law, Listen Notes, and its suppliers and distributors, will not be responsible for any indirect, special, consequential, exemplary, or punitive damages.
+
+Business Usage: If you're using our Services on behalf of a business, the business accepts these terms and will hold harmless and indemnify Listen Notes.
+
+Terms Modification: We may modify these terms. We'll post notice of modifications on this page. Changes will become effective no sooner than fourteen days after they are posted.
+
+For disputes arising out of or relating to these terms or the Services, California laws will apply, and litigation will occur in San Francisco County, California, USA.
+
+To contact Listen Notes, email hello@listennotes.com.
+
+== Listen Notes ChatGPT Plugin Privacy Policy ==
+
+Effective date: June 16, 2023
+
+We collect your information to provide and improve our services. We may collect device information, log information, and location information.
+
+We use collected information to provide, maintain, protect and improve our services. We may share collected information for analytics, business transfers, and protection of Listen Notes and others.
+
+You have the ability to access, rectify, port, and erase your data. You can delete your account at any time through your account settings.
+
+Our Privacy Policy applies to all services offered by Listen Notes and may change from time to time. We won't reduce your rights under this Privacy Policy without your explicit consent. Any changes will be posted on this page.
