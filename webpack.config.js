@@ -27,8 +27,6 @@ if (prod) {
 }
 
 const entry = {
-  base_css: './common/base.css',
-  index_js: './ClientHomeApp/index.js',
 };
 
 module.exports = {
