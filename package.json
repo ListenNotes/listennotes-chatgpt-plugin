@@ -6,10 +6,6 @@
     "build:production": "NODE_ENV=production webpack --config ./webpack.config.js",
     "dev": "wrangler pages dev -- webpack serve --host localhost --mode development"
   },
-  "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  },
   "devDependencies": {
     "@swc/core": "^1.3.8",
     "autoprefixer": "^10.4.12",
@@ -28,5 +24,8 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
     "webpack-shell-plugin-next": "^2.2.2"
+  },
+  "dependencies": {
+    "podcast-api": "^2.0.3"
   }
 }
