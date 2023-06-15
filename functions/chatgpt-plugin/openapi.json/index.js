@@ -3,6 +3,7 @@ import JustListenDef from "../../../edge-src/api-definitions/JustListenDef";
 import SearchEpisodesDef from "../../../edge-src/api-definitions/SearchEpisodesDef";
 import SearchPodcastsDef from "../../../edge-src/api-definitions/SearchPodcastsDef";
 import GetGenresDef from '../../../edge-src/api-definitions/GetGenresDef';
+import BestPodcastsDef from '../../../edge-src/api-definitions/BestPodcastsDef';
 
 // Example spec: https://platform.openai.com/docs/plugins/getting-started/openapi-definition
 // - 200 characters max for each API endpoint description/summary field in API specification
@@ -32,6 +33,7 @@ export async function onRequestGet(context) {
     paths: {
       ...new SearchPodcastsDef().openApiPathSpec(),
       ...new SearchEpisodesDef().openApiPathSpec(),
+      ...new BestPodcastsDef().openApiPathSpec(),
       ...new JustListenDef().openApiPathSpec(),
       ...new GetGenresDef().openApiPathSpec(),
     },
