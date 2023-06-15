@@ -1,4 +1,4 @@
-import BaseDef, {OPENAPI_PROPERTIES} from "./BaseDef";
+import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
 export default class JustListenDef  extends BaseDef {
   apiFunctionName() {
@@ -26,7 +26,6 @@ export default class JustListenDef  extends BaseDef {
   }
 
   openApiPathSpec() {
-    const {episodeSpec, podcastSpec} = OPENAPI_PROPERTIES;
     const params = {
       operationId: 'justListen',
       description: 'Get a random podcast episode, ' +
@@ -35,29 +34,7 @@ export default class JustListenDef  extends BaseDef {
       parameters: [],
       response200: {
         description: 'Returns a json object with the podcast episode data',
-        schema: {
-          type: 'object',
-          properties: {
-            title: {...episodeSpec.title},
-            description: {...episodeSpec.description},
-            image: {...episodeSpec.image},
-            audio: {...episodeSpec.audio},
-            audio_length_sec: {...episodeSpec.audio_length_sec},
-            pub_date_ms: {...episodeSpec.pub_date_ms},
-            listennotes_url: {...episodeSpec.listennotes_url},
-            podcast: {
-              type: 'object',
-              properties: {
-                title: {...podcastSpec.title},
-                publisher: {...podcastSpec.publisher},
-                image: {...podcastSpec.image},
-                listen_score: {...podcastSpec.listen_score},
-                listen_score_global_rank: {...podcastSpec.listen_score_global_rank},
-                listennotes_url: {...podcastSpec.listennotes_url},
-              },
-            },
-          },
-        },
+        schema: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
       },
     }
     return {

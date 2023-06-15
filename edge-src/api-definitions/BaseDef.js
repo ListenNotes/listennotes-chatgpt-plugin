@@ -60,6 +60,32 @@ export const OPENAPI_PROPERTIES = {
   },
 }
 
+export const OPENAPI_RESPONSE_TMPL = {
+  EPISODE_SIMPLE: {
+    type: 'object',
+    properties: {
+      title: {...OPENAPI_PROPERTIES.episodeSpec.title},
+      description: {...OPENAPI_PROPERTIES.episodeSpec.description},
+      image: {...OPENAPI_PROPERTIES.episodeSpec.image},
+      audio: {...OPENAPI_PROPERTIES.episodeSpec.audio},
+      audio_length_sec: {...OPENAPI_PROPERTIES.episodeSpec.audio_length_sec},
+      pub_date_ms: {...OPENAPI_PROPERTIES.episodeSpec.pub_date_ms},
+      listennotes_url: {...OPENAPI_PROPERTIES.episodeSpec.listennotes_url},
+      podcast: {
+        type: 'object',
+        properties: {
+          title: {...OPENAPI_PROPERTIES.podcastSpec.title},
+          publisher: {...OPENAPI_PROPERTIES.podcastSpec.publisher},
+          image: {...OPENAPI_PROPERTIES.podcastSpec.image},
+          listen_score: {...OPENAPI_PROPERTIES.podcastSpec.listen_score},
+          listen_score_global_rank: {...OPENAPI_PROPERTIES.podcastSpec.listen_score_global_rank},
+          listennotes_url: {...OPENAPI_PROPERTIES.podcastSpec.listennotes_url},
+        },
+      },
+    },
+  },
+}
+
 export default class BaseDef {
   constructor() {
   }
@@ -76,6 +102,11 @@ export default class BaseDef {
   }
 
   openApiPathSpec() {
+    return {}
+  }
+
+  // Pass extra params to Listen API's endpoint
+  extraParams() {
     return {}
   }
 

@@ -16,7 +16,10 @@ export default class ListenApiManager {
   }
 
   async getResponse() {
-    const res = await this.client[this.endpointDef.apiFunctionName()](this.data.searchParams)
+    const res = await this.client[this.endpointDef.apiFunctionName()]({
+      ...this.data.searchParams,
+      ...this.endpointDef.extraParams(),
+    })
     return this.responseBuilder.getJsonResponse(
       this.endpointDef.transformResultFunc(res.data))
   }
