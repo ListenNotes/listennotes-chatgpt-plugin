@@ -15,6 +15,8 @@ const descriptionForHuman = "The best podcast search engine and database. " +
 // and then enumerating all of the functionality that your API provides.
 // Best practices: https://platform.openai.com/docs/plugins/getting-started/best-practices
 const descriptionForModel = 'Plugin for discovering podcasts and episodes. ' +
+  'When asked for searching podcasts, use `GET /search_podcasts`; when asked for searching episodes or interviews, ' +
+  'use `GET /search_episodes`.' +
   "Always use listennotes_url from the response data for the link of a podcast or an episode. " +
   "Don't make up your own link."
 

@@ -29,7 +29,7 @@ export default class SearchEpisodesDef  extends BaseDef {
     // const {episodeSpec, podcastSpec} = OPENAPI_PROPERTIES;
     const params = {
       operationId: 'searchEpisodes',
-      description: 'Search podcast episodes by keyword. ' +
+      description: 'Search episodes by keyword. ' +
         'A keyword can be a topic, a person name, a place, or a brand. ' +
         'Useful to find podcast interviews of a person, or episodes discussing a specific topic / person.',
       parameters: [
