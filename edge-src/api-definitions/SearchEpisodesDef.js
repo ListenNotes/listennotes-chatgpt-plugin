@@ -46,7 +46,13 @@ export default class SearchEpisodesDef  extends BaseDef {
       ],
       response200: {
         description: 'Returns a list of podcast episodes in json format',
-        schema: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
+        schema: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
+          },
+        },
       },
     }
     return {

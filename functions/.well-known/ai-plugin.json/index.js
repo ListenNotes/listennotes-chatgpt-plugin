@@ -15,10 +15,16 @@ const descriptionForHuman = "The best podcast search engine and database. All po
 // and then enumerating all of the functionality that your API provides.
 // Best practices: https://platform.openai.com/docs/plugins/getting-started/best-practices
 const descriptionForModel = 'Plugin for discovering podcasts and episodes.\n ' +
-  '- When asked for searching podcasts, use `GET /search_podcasts`\n ' +
-  '- when asked for searching episodes or interviews, use `GET /search_episodes`\n ' +
-  "Always use listennotes_url from the response data for the link of a podcast or an episode. " +
-  "Don't make up your own link."
+  '- When asked for searching podcasts, use the `searchPodcasts` endpoint\n ' +
+  '- when asked for searching episodes or interviews, use the `searchEpisodes` endpoint\n ' +
+  '- When asked for top podcasts or best podcasts or podcast recommendations, ' +
+  'use the `getBestPodcasts` endpoint first; if no results, then try the `searchPodcasts` endpoint\n ' +
+  '- When you need category or genres id, use the `getGenres` endpoint to ' +
+  'find the closet genre name then get the id\n ' +
+  'Instructions for displaying results:\n ' +
+  "- Always use `listennotes_url` from the response data for the link of a podcast or an episode. " +
+  "Don't make up your own link.\n " +
+  '- Display at most 5 results, where each result is a podcast or an episode.\n '
 
 const pluginSpec = (params) => ({
   "schema_version": "v1",

@@ -64,7 +64,7 @@ export const OPENAPI_PROPERTIES = {
     latest_episode_id: {
       type: 'string',
       description: 'the id of the latest episode of the podcast, ' +
-        'which can be used to fetch detailed metadata of the episode using GET /episodes/:id',
+        'which can be used to fetch detailed metadata of the episode using the `getEpisode` endpoint',
     },
     latest_pub_date_ms: {
       type: 'integer',
@@ -138,7 +138,7 @@ export const OPENAPI_PARAMETERS = {
     "name": "genre_ids",
     "in": "query",
     "description": "A comma-delimited string of a list of genre ids. If not specified, then all genres are included." +
-      "Find the genre id and the name of all genres from `GET /genres`.",
+      "Find the genre id and the name of all genres from the `getGenres` endpoint",
     "required": false,
     "schema": {
       "type": "string",
@@ -177,7 +177,7 @@ export const OPENAPI_PARAMETERS = {
     "name": "language",
     "in": "query",
     "description": "Limit search results to a specific language. If not specified, it'll be any language." +
-      " Get a list of supported languages from `GET /languages`.",
+      " Get a list of supported languages from the `getLanguages` endpoint",
     "required": false,
     "schema": {
       "type": "string",
@@ -187,7 +187,7 @@ export const OPENAPI_PARAMETERS = {
     "name": "region",
     "in": "query",
     "description": "Limit search results to a specific region (e.g., us, gb, in...). " +
-      "If not specified, it'll be any region. Get the supported country codes from `GET /regions`.",
+      "If not specified, it'll be any region. Get the supported country codes from the `getRegions` endpoint",
     "required": false,
     "schema": {
       "type": "string",
@@ -242,6 +242,36 @@ export const OPENAPI_PARAMETERS = {
     "schema": {
       "type": "integer"
     },
+  },
+  genre_id: {
+    "name": "genre_id",
+    "in": "query",
+    "description": "Narrow down results for a specific podcast genre. Get the id from the `getGenres` endpoint.",
+    "required": false,
+    "schema": {
+      "type": "string",
+      }
+  },
+  best_podcasts_region: {
+    "name": "region",
+    "in": "query",
+    "description": "Filter best podcasts by country/region. " +
+      "Get the supported country codes (e.g., us, jp, gb...) from the `getRegions` endpoint.",
+    "required": false,
+    "schema": {
+      "type": "string",
+      "default": "us"
+    }
+  },
+  best_podcasts_publisher_region: {
+    "name": "publisher_region",
+    "in": "query",
+    "description": "Filter best podcasts by the publisher's country/region. " +
+      "Get the supported country codes (e.g., us, jp, gb...) from the `getRegions` endpoint.",
+    "required": false,
+    "schema": {
+      "type": "string",
+    }
   },
 }
 
@@ -302,6 +332,8 @@ export default class BaseDef {
     return {}
   }
 
+  // Functions from podcast-api-js:
+  // https://github.com/ListenNotes/podcast-api-js#api-reference
   apiFunctionName() {
     return ''
   }

@@ -1,4 +1,4 @@
-import BaseDef, {OPENAPI_PARAMETERS, OPENAPI_PROPERTIES, OPENAPI_RESPONSE_TMPL} from "./BaseDef";
+import BaseDef, {OPENAPI_PARAMETERS, OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
 export default class SearchPodcastsDef  extends BaseDef {
   apiFunctionName() {
@@ -6,7 +6,6 @@ export default class SearchPodcastsDef  extends BaseDef {
   }
 
   transformResultFunc(result) {
-    console.log(result)
     return result.results.map((item) => ({
       title: item.title_original,
       description: item.description_original,
@@ -49,7 +48,13 @@ export default class SearchPodcastsDef  extends BaseDef {
       ],
       response200: {
         description: 'Returns a list of podcasts in json format',
-        schema: OPENAPI_RESPONSE_TMPL.PODCAST_SIMPLE,
+        schema: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: OPENAPI_RESPONSE_TMPL.PODCAST_SIMPLE,
+          },
+        },
       },
     }
     return {
