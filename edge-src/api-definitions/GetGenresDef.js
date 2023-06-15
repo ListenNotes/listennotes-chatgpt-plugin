@@ -1,6 +1,6 @@
-import BaseDef, {OPENAPI_PARAMETERS, OPENAPI_RESPONSE_TMPL} from "./BaseDef";
+import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
-export default class BestPodcastsDef  extends BaseDef {
+export default class GetGenresDef  extends BaseDef {
   apiFunctionName() {
     return 'fetchPodcastGenres'
   }
