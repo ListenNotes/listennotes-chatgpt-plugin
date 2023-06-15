@@ -1,6 +1,7 @@
 import ResponseBuilder from "../../../edge-src/common/ResponseBuilder";
 import JustListenDef from "../../../edge-src/api-definitions/JustListenDef";
 import SearchEpisodesDef from "../../../edge-src/api-definitions/SearchEpisodesDef";
+import SearchPodcastsDef from "../../../edge-src/api-definitions/SearchPodcastsDef";
 
 // Example spec: https://platform.openai.com/docs/plugins/getting-started/openapi-definition
 // - 200 characters max for each API endpoint description/summary field in API specification
@@ -28,8 +29,9 @@ export async function onRequestGet(context) {
   const params = {
     baseUrl: data.baseUrl,
     paths: {
-      ...new JustListenDef().openApiPathSpec(),
+      ...new SearchPodcastsDef().openApiPathSpec(),
       ...new SearchEpisodesDef().openApiPathSpec(),
+      ...new JustListenDef().openApiPathSpec(),
     },
   }
   return responseBuilder.getJsonResponse(openapiSpec(params))

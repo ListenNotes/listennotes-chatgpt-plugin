@@ -33,19 +33,23 @@ export const OPENAPI_PROPERTIES = {
   podcastSpec: {
     title: {
       type: 'string',
-      description: 'title of the podcast that this episode belongs to',
+      description: 'title of the podcast',
+    },
+    description: {
+      type: 'string',
+      description: 'description of the podcast in html',
     },
     publisher: {
       type: 'string',
-      description: 'publisher of the podcast that this episode belongs to',
+      description: 'publisher of the podcast',
     },
     image: {
       type: 'string',
-      description: 'image url of the podcast that this episode belongs to',
+      description: 'image url of the podcast',
     },
     listen_score: {
       type: 'integer',
-      description: 'Listen Score of the podcast that this episode belongs to, ' +
+      description: 'Listen Score of the podcast, ' +
         'which indicates the estimated popularity of the podcast (similar to nielsen ratings)',
     },
     listen_score_global_rank: {
@@ -56,6 +60,32 @@ export const OPENAPI_PROPERTIES = {
       type: 'string',
       description: 'the canonical url of the podcast on Listen Notes, ' +
         'which can be used to manually share this podcast',
+    },
+    latest_episode_id: {
+      type: 'string',
+      description: 'the id of the latest episode of the podcast, ' +
+        'which can be used to fetch detailed metadata of the episode using GET /episodes/:id',
+    },
+    latest_pub_date_ms: {
+      type: 'integer',
+      description: 'published date of the latest episode of this podcast in milliseconds of the Unix epoch',
+    },
+    update_frequency_hours: {
+      type: "integer",
+      description: "How frequently does this podcast release a new episode? In hours. " +
+        "For example, if the value is 166, then it's every 166 hours (or weekly).",
+    },
+    audio_length_sec: {
+      type: "integer",
+      description: "Average audio length of all episodes of this podcast. In seconds.",
+    },
+    total_episodes: {
+      type: "integer",
+      description: "Total number of episodes in this podcast.",
+    },
+    earliest_pub_date_ms: {
+      type: "integer",
+      description: "The published date of the oldest episode of this podcast. In milliseconds",
     },
   },
 }
@@ -171,7 +201,45 @@ export const OPENAPI_PARAMETERS = {
     "schema": {
       "type": "integer",
       "default": 10
+    },
+  },
+  episode_count_min: {
+    "in": "query",
+    "description": "Minimum number of episodes.",
+    "required": false,
+    "schema": {
+      "type": "integer"
     }
+  },
+  episode_count_max: {
+    "in": "query",
+    "description": "Maximum number of episodes.",
+    "required": false,
+    "schema": {
+      "type": "integer"
+    }
+  },
+  update_freq_min: {
+    "name": "update_freq_min",
+    "in": "query",
+    "description": "Minimum update frequency in hours." +
+      " For example, if you want to find \"weekly\" podcasts, then you can set **update_freq_min**=144 hours (or 6 days)" +
+      " and **update_freq_max**=192 hours (or 8 days).",
+    "required": false,
+    "schema": {
+      "type": "integer"
+    },
+  },
+  update_freq_max: {
+    "name": "update_freq_max",
+    "in": "query",
+    "description": "Minimum update frequency in hours." +
+      " For example, if you want to find \"weekly\" podcasts, then you can set **update_freq_min**=144 hours (or 6 days)" +
+      " and **update_freq_max**=192 hours (or 8 days).",
+    "required": false,
+    "schema": {
+      "type": "integer"
+    },
   },
 }
 
@@ -188,6 +256,7 @@ export const OPENAPI_RESPONSE_TMPL = {
       listennotes_url: {...OPENAPI_PROPERTIES.episodeSpec.listennotes_url},
       podcast: {
         type: 'object',
+        description: 'the podcast that this episode belongs to',
         properties: {
           title: {...OPENAPI_PROPERTIES.podcastSpec.title},
           publisher: {...OPENAPI_PROPERTIES.podcastSpec.publisher},
@@ -197,6 +266,25 @@ export const OPENAPI_RESPONSE_TMPL = {
           listennotes_url: {...OPENAPI_PROPERTIES.podcastSpec.listennotes_url},
         },
       },
+    },
+  },
+
+  PODCAST_SIMPLE: {
+    type: 'object',
+    properties: {
+      title: {...OPENAPI_PROPERTIES.podcastSpec.title},
+      description: {...OPENAPI_PROPERTIES.podcastSpec.description},
+      listennotes_url: {...OPENAPI_PROPERTIES.podcastSpec.listennotes_url},
+      publisher: {...OPENAPI_PROPERTIES.podcastSpec.publisher},
+      image: {...OPENAPI_PROPERTIES.podcastSpec.image},
+      latest_episode_id: {...OPENAPI_PROPERTIES.podcastSpec.latest_episode_id},
+      latest_pub_date_ms: {...OPENAPI_PROPERTIES.podcastSpec.latest_pub_date_ms},
+      earliest_pub_date_ms: {...OPENAPI_PROPERTIES.podcastSpec.earliest_pub_date_ms},
+      total_episodes: {...OPENAPI_PROPERTIES.podcastSpec.total_episodes},
+      audio_length_sec: {...OPENAPI_PROPERTIES.podcastSpec.audio_length_sec},
+      update_frequency_hours: {...OPENAPI_PROPERTIES.podcastSpec.update_frequency_hours},
+      listen_score: {...OPENAPI_PROPERTIES.podcastSpec.listen_score},
+      listen_score_global_rank: {...OPENAPI_PROPERTIES.podcastSpec.listen_score_global_rank},
     },
   },
 }
