@@ -213,7 +213,7 @@ export const OPENAPI_PARAMETERS = {
     }
   },
   episode_count_max: {
-    'episode_count_max': 'episode_count_max',
+    'name': 'episode_count_max',
     "in": "query",
     "description": "Maximum number of episodes.",
     "required": false,
