@@ -319,6 +319,21 @@ export const OPENAPI_RESPONSE_TMPL = {
       listen_score_global_rank: {...OPENAPI_PROPERTIES.podcastSpec.listen_score_global_rank},
     },
   },
+
+  GENRE: {
+    "id": {
+      "type": "integer",
+      "description": "The id of this genre, which can be used in the `genre_ids` parameter in other endpoints.",
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable genre name.",
+    },
+    "parent_id": {
+      "type": "integer",
+      "description": "Parent genre's id.",
+    },
+  },
 }
 
 export default class BaseDef {
