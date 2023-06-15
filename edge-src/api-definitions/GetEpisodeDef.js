@@ -1,8 +1,8 @@
 import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
-export default class JustListenDef  extends BaseDef {
+export default class GetEpisodeDef  extends BaseDef {
   apiFunctionName() {
-    return 'justListen'
+    return 'fetchEpisodeById'
   }
 
   transformResultFunc(result) {
@@ -29,10 +29,9 @@ export default class JustListenDef  extends BaseDef {
 
   openApiPathSpec() {
     const params = {
-      operationId: 'justListen',
-      description: 'Get a random podcast episode, ' +
-        'with all necessary metadata to describe this episode and stream the audio.' +
-        'Recently published episodes are more likely to be fetched.',
+      operationId: 'getEpisode',
+      description: 'Fetch detailed meta data for an episode by id. ' +
+        'The `id` parameter of this endpoint can be obtained from the response of other endpoints.',
       parameters: [],
       response200: {
         description: 'Returns a json object with the podcast episode data',
@@ -40,7 +39,7 @@ export default class JustListenDef  extends BaseDef {
       },
     }
     return {
-      '/just_listen': this._makeOpenApiPathSpec(params),
+      '/episodes/{id}': this._makeOpenApiPathSpec(params),
     }
   }
 }

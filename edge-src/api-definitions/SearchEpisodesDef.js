@@ -7,6 +7,7 @@ export default class SearchEpisodesDef  extends BaseDef {
 
   transformResultFunc(result) {
     return result.results.map((item) => ({
+      id: item.id,
       title: item.title_original,
       description: item.description_original,
       audio: item.audio,
@@ -15,6 +16,7 @@ export default class SearchEpisodesDef  extends BaseDef {
       image: item.image,
       listennotes_url: item.listennotes_url,
       podcast: {
+        id: item.podcast.id,
         title: item.podcast.title_original,
         publisher: item.podcast.publisher_original,
         listennotes_url: item.podcast.listennotes_url,

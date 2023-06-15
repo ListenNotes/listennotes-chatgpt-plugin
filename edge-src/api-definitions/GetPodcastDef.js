@@ -1,13 +1,12 @@
 import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
-export default class JustListenDef  extends BaseDef {
+export default class GetPodcastDef  extends BaseDef {
   apiFunctionName() {
-    return 'justListen'
+    return 'fetchPodcastById'
   }
 
   transformResultFunc(result) {
     return ({
-      id: result.id,
       title: result.title,
       description: result.description,
       image: result.image,
@@ -16,7 +15,6 @@ export default class JustListenDef  extends BaseDef {
       pub_date_ms: result.pub_date_ms,
       listennotes_url: result.listennotes_url,
       podcast: {
-        id: result.podcast.id,
         title: result.podcast.title,
         publisher: result.podcast.publisher,
         image: result.podcast.image,

@@ -24,7 +24,8 @@ const descriptionForModel = 'Plugin for discovering podcasts and episodes.\n ' +
   'Instructions for displaying results:\n ' +
   "- Always use `listennotes_url` from the response data for the link of a podcast or an episode. " +
   "Don't make up your own link.\n " +
-  '- Display at most 5 results, where each result is a podcast or an episode.\n '
+  '- Display at most 5 results, where each result is a podcast or an episode.\n ' +
+  '- Summarize the description of each result to at most 150 characters.\n '
 
 const pluginSpec = (params) => ({
   "schema_version": "v1",

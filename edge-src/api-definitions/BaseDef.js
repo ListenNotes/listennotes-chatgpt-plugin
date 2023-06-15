@@ -1,5 +1,10 @@
 export const OPENAPI_PROPERTIES = {
   episodeSpec: {
+    id: {
+      type: 'string',
+      description: 'the id of the episode, ' +
+        'which can be used to pass to the other endpoints that need an episode id as a parameter',
+    },
     title: {
       type: 'string',
       description: 'title of the podcast episode',
@@ -31,6 +36,11 @@ export const OPENAPI_PROPERTIES = {
     },
   },
   podcastSpec: {
+    id: {
+      type: 'string',
+      description: 'the id of the podcast, ' +
+        'which can be used to pass to the other endpoints that need a podcast id as a parameter',
+    },
     title: {
       type: 'string',
       description: 'title of the podcast',
@@ -279,6 +289,7 @@ export const OPENAPI_RESPONSE_TMPL = {
   EPISODE_SIMPLE: {
     type: 'object',
     properties: {
+      id: {...OPENAPI_PROPERTIES.episodeSpec.id},
       title: {...OPENAPI_PROPERTIES.episodeSpec.title},
       description: {...OPENAPI_PROPERTIES.episodeSpec.description},
       image: {...OPENAPI_PROPERTIES.episodeSpec.image},
@@ -290,6 +301,7 @@ export const OPENAPI_RESPONSE_TMPL = {
         type: 'object',
         description: 'the podcast that this episode belongs to',
         properties: {
+          id: {...OPENAPI_PROPERTIES.podcastSpec.id},
           title: {...OPENAPI_PROPERTIES.podcastSpec.title},
           publisher: {...OPENAPI_PROPERTIES.podcastSpec.publisher},
           image: {...OPENAPI_PROPERTIES.podcastSpec.image},
@@ -304,6 +316,7 @@ export const OPENAPI_RESPONSE_TMPL = {
   PODCAST_SIMPLE: {
     type: 'object',
     properties: {
+      id: {...OPENAPI_PROPERTIES.podcastSpec.id},
       title: {...OPENAPI_PROPERTIES.podcastSpec.title},
       description: {...OPENAPI_PROPERTIES.podcastSpec.description},
       listennotes_url: {...OPENAPI_PROPERTIES.podcastSpec.listennotes_url},

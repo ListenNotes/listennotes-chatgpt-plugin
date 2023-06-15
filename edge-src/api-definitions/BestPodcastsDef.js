@@ -7,6 +7,7 @@ export default class BestPodcastsDef  extends BaseDef {
 
   transformResultFunc(result) {
     return result.podcasts.map((item) => ({
+      id: item.id,
       title: item.title,
       description: item.description,
       listennotes_url: item.listennotes_url,

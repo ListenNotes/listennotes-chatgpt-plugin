@@ -7,6 +7,7 @@ export default class SearchPodcastsDef  extends BaseDef {
 
   transformResultFunc(result) {
     return result.results.map((item) => ({
+      id: item.id,
       title: item.title_original,
       description: item.description_original,
       listennotes_url: item.listennotes_url,
