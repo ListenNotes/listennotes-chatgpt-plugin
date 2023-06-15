@@ -41,6 +41,8 @@ export default class SearchEpisodesDef  extends BaseDef {
         OPENAPI_PARAMETERS.published_after,
         OPENAPI_PARAMETERS.only_in,
         OPENAPI_PARAMETERS.language,
+        OPENAPI_PARAMETERS.region,
+        OPENAPI_PARAMETERS.page_size,
       ],
       response200: {
         description: 'Returns a list of podcast episodes in json format',

@@ -153,6 +153,26 @@ export const OPENAPI_PARAMETERS = {
       "type": "string",
     }
   },
+  region: {
+    "name": "region",
+    "in": "query",
+    "description": "Limit search results to a specific region (e.g., us, gb, in...). " +
+      "If not specified, it'll be any region. Get the supported country codes from `GET /regions`.",
+    "required": false,
+    "schema": {
+      "type": "string",
+    },
+  },
+  page_size: {
+    "name": "page_size",
+    "in": "query",
+    "description": "The maximum number of search results per page. A valid value should be an integer between 1 and 10 (inclusive).",
+    "required": false,
+    "schema": {
+      "type": "integer",
+      "default": 10
+    }
+  },
 }
 
 export const OPENAPI_RESPONSE_TMPL = {
