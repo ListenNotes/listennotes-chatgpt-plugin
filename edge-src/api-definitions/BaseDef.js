@@ -204,6 +204,7 @@ export const OPENAPI_PARAMETERS = {
     },
   },
   episode_count_min: {
+    'name': 'episode_count_min',
     "in": "query",
     "description": "Minimum number of episodes.",
     "required": false,
@@ -212,6 +213,7 @@ export const OPENAPI_PARAMETERS = {
     }
   },
   episode_count_max: {
+    'episode_count_max': 'episode_count_max',
     "in": "query",
     "description": "Maximum number of episodes.",
     "required": false,
