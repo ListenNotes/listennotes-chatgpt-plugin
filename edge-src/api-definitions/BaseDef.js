@@ -60,6 +60,101 @@ export const OPENAPI_PROPERTIES = {
   },
 }
 
+export const OPENAPI_PARAMETERS = {
+  q: {
+    "name": "q",
+    "in": "query",
+    "description": "A keyword to search, which could be person, place, topic..." +
+      "You can use double quotes to do verbatim match, e.g., \"game of thrones\". Otherwise, it's fuzzy search.",
+    "required": true,
+    "schema": {
+      "type": "string",
+    },
+  },
+  sort_by_date: {
+    "name": "sort_by_date",
+    "in": "query",
+    "description": "Sort by published date or not? If 0, then sort by relevance. If 1, then sort by published date.",
+    "required": false,
+    "schema": {
+      "type": "integer",
+      "default": 0,
+      "enum": [
+        0,
+        1,
+      ]
+    }
+  },
+  len_min: {
+    "name": "len_min",
+    "in": "query",
+    "description": "Minimum audio length for episode in minutes.",
+    "required": false,
+    "schema": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  len_max: {
+    "name": "len_max",
+    "in": "query",
+    "description": "Maximum audio length for episode in minutes.",
+    "required": false,
+    "schema": {
+      "type": "integer",
+    }
+  },
+  genre_ids: {
+    "name": "genre_ids",
+    "in": "query",
+    "description": "A comma-delimited string of a list of genre ids. If not specified, then all genres are included." +
+      "Find the genre id and the name of all genres from `GET /genres`.",
+    "required": false,
+    "schema": {
+      "type": "string",
+    },
+  },
+  published_before: {
+    "name": "published_before",
+    "in": "query",
+    "description": "Only show results published before this timestamp (in milliseconds).",
+    "required": false,
+    "schema": {
+      "type": "integer",
+    }
+  },
+  published_after: {
+    "name": "published_after",
+    "in": "query",
+    "description": "Only show results published after this timestamp (in milliseconds).",
+    "required": false,
+    "schema": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  only_in: {
+    "name": "only_in",
+    "in": "query",
+    "description": "A comma-delimited string to search only in specific fields. Allowed values are title, description, author, and audio. If not specified, then search every fields.",
+    "required": false,
+    "schema": {
+      "type": "string",
+      "default": "title,description,author,audio"
+    }
+  },
+  language: {
+    "name": "language",
+    "in": "query",
+    "description": "Limit search results to a specific language. If not specified, it'll be any language." +
+      " Get a list of supported languages from `GET /languages`.",
+    "required": false,
+    "schema": {
+      "type": "string",
+    }
+  },
+}
+
 export const OPENAPI_RESPONSE_TMPL = {
   EPISODE_SIMPLE: {
     type: 'object',

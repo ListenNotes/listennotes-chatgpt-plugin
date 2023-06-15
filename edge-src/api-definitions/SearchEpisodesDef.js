@@ -1,4 +1,4 @@
-import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
+import BaseDef, {OPENAPI_PARAMETERS, OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
 export default class SearchEpisodesDef  extends BaseDef {
   apiFunctionName() {
@@ -33,7 +33,14 @@ export default class SearchEpisodesDef  extends BaseDef {
         'A keyword can be a topic, a person name, a place, or a brand. ' +
         'Useful to find podcast interviews of a person, or episodes discussing a specific topic / person.',
       parameters: [
-
+        OPENAPI_PARAMETERS.q,
+        OPENAPI_PARAMETERS.sort_by_date,
+        OPENAPI_PARAMETERS.len_min,
+        OPENAPI_PARAMETERS.len_max,
+        OPENAPI_PARAMETERS.published_before,
+        OPENAPI_PARAMETERS.published_after,
+        OPENAPI_PARAMETERS.only_in,
+        OPENAPI_PARAMETERS.language,
       ],
       response200: {
         description: 'Returns a list of podcast episodes in json format',
