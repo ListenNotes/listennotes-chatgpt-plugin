@@ -57,7 +57,7 @@ const pluginSpec = (params) => ({
   "contact_email": "hello@listennotes.com",
 
   // Redirect URL for users to view plugin information
-  "legal_info_url": `${params.baseUrl}/legal.txt`
+  "legal_info_url": `${params.baseUrl}/chatgpt-plugin/legal.txt`
 })
 
 export async function onRequestGet(context) {
