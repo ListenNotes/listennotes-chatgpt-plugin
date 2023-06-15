@@ -1,4 +1,4 @@
-import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
+import BaseDef, {OPENAPI_PARAMETERS, OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
 export default class GetEpisodeDef  extends BaseDef {
   apiFunctionName() {
@@ -32,7 +32,9 @@ export default class GetEpisodeDef  extends BaseDef {
       operationId: 'getEpisode',
       description: 'Fetch detailed meta data for an episode by id. ' +
         'The `id` parameter of this endpoint can be obtained from the response of other endpoints.',
-      parameters: [],
+      parameters: [
+        OPENAPI_PARAMETERS.episode_id,
+      ],
       response200: {
         description: 'Returns a json object with the podcast episode data',
         schema: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,

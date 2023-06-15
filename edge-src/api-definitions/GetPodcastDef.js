@@ -1,4 +1,4 @@
-import BaseDef, {OPENAPI_RESPONSE_TMPL} from "./BaseDef";
+import BaseDef, {OPENAPI_PARAMETERS, OPENAPI_RESPONSE_TMPL} from "./BaseDef";
 
 export default class GetPodcastDef  extends BaseDef {
   apiFunctionName() {
@@ -6,39 +6,25 @@ export default class GetPodcastDef  extends BaseDef {
   }
 
   transformResultFunc(result) {
-    return ({
-      title: result.title,
-      description: result.description,
-      image: result.image,
-      audio: result.audio,
-      audio_length_sec: result.audio_length_sec,
-      pub_date_ms: result.pub_date_ms,
-      listennotes_url: result.listennotes_url,
-      podcast: {
-        title: result.podcast.title,
-        publisher: result.podcast.publisher,
-        image: result.podcast.image,
-        listen_score: result.podcast.listen_score,
-        listen_score_global_rank: result.podcast.listen_score_global_rank,
-        listennotes_url: result.podcast.listennotes_url,
-      }
-    })
+    console.log(result)
+    return {}
   }
 
   openApiPathSpec() {
     const params = {
-      operationId: 'justListen',
-      description: 'Get a random podcast episode, ' +
-        'with all necessary metadata to describe this episode and stream the audio.' +
-        'Recently published episodes are more likely to be fetched.',
-      parameters: [],
+      operationId: 'getPodcast',
+      description: 'Fetch detailed meta data for a podcast by id, including up to 10 episodes. ' +
+        'The `id` parameter of this endpoint can be obtained from the response of other endpoints.',
+      parameters: [
+        OPENAPI_PARAMETERS.podcast_id,
+      ],
       response200: {
-        description: 'Returns a json object with the podcast episode data',
-        schema: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
+        description: 'Returns a json object with the podcast metadata',
+        schema: OPENAPI_RESPONSE_TMPL.PODCAST_SIMPLE,
       },
     }
     return {
-      '/just_listen': this._makeOpenApiPathSpec(params),
+      '/podcasts/{id}': this._makeOpenApiPathSpec(params),
     }
   }
 }

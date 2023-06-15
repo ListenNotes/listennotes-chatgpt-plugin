@@ -283,6 +283,28 @@ export const OPENAPI_PARAMETERS = {
       "type": "string",
     }
   },
+
+  episode_id: {
+    "name": "id",
+    "in": "path",
+    "description": "id for a specific episode, which can be obtained id from the response of other endpoints.",
+    "required": true,
+    "schema": {
+      "type": "string",
+      "example": "6b6d65930c5a4f71b254465871fed370"
+    },
+  },
+
+  podcast_id: {
+    "name": "id",
+    "in": "path",
+    "description": "id for a specific podcast, which can be obtained id from the response of other endpoints.",
+    "required": true,
+    "schema": {
+      "type": "string",
+      "example": "6b6d65930c5a4f71b254465871fed370"
+    },
+  },
 }
 
 export const OPENAPI_RESPONSE_TMPL = {

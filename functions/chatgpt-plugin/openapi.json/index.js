@@ -7,6 +7,7 @@ import BestPodcastsDef from '../../../edge-src/api-definitions/BestPodcastsDef';
 import GetLanguagesDef from "../../../edge-src/api-definitions/GetLanguagesDef";
 import GetRegionsDef from "../../../edge-src/api-definitions/GetRegionsDef";
 import GetEpisodeDef from "../../../edge-src/api-definitions/GetEpisodeDef";
+import GetPodcastDef from "../../../edge-src/api-definitions/GetPodcastDef";
 
 // Example spec: https://platform.openai.com/docs/plugins/getting-started/openapi-definition
 // - 200 characters max for each API endpoint description/summary field in API specification
@@ -42,6 +43,7 @@ export async function onRequestGet(context) {
       ...new GetLanguagesDef().openApiPathSpec(),
       ...new GetRegionsDef().openApiPathSpec(),
       ...new GetEpisodeDef().openApiPathSpec(),
+      ...new GetPodcastDef().openApiPathSpec(),
     },
   }
   return responseBuilder.getJsonResponse(openapiSpec(params))
