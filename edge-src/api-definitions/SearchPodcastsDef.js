@@ -15,7 +15,7 @@ export default class SearchPodcastsDef  extends BaseDef {
       image: item.image,
       latest_episode_id: item.latest_episode_id,
       latest_pub_date_ms: item.latest_pub_date_ms,
-      earliest_pub_date_ms: 1482664380160,
+      earliest_pub_date_ms: item.earliest_pub_date_ms,
       total_episodes: item.total_episodes,
       audio_length_sec: item.audio_length_sec,
       update_frequency_hours: item.update_frequency_hours,

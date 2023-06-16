@@ -307,18 +307,39 @@ export const OPENAPI_PARAMETERS = {
   },
 }
 
+const EPISODE_COMPACT = {
+  id: {...OPENAPI_PROPERTIES.episodeSpec.id},
+  title: {...OPENAPI_PROPERTIES.episodeSpec.title},
+  description: {...OPENAPI_PROPERTIES.episodeSpec.description},
+  image: {...OPENAPI_PROPERTIES.episodeSpec.image},
+  audio: {...OPENAPI_PROPERTIES.episodeSpec.audio},
+  audio_length_sec: {...OPENAPI_PROPERTIES.episodeSpec.audio_length_sec},
+  pub_date_ms: {...OPENAPI_PROPERTIES.episodeSpec.pub_date_ms},
+  listennotes_url: {...OPENAPI_PROPERTIES.episodeSpec.listennotes_url},
+}
+
+const PODCAST_COMPACT = {
+  id: {...OPENAPI_PROPERTIES.podcastSpec.id},
+  title: {...OPENAPI_PROPERTIES.podcastSpec.title},
+  description: {...OPENAPI_PROPERTIES.podcastSpec.description},
+  listennotes_url: {...OPENAPI_PROPERTIES.podcastSpec.listennotes_url},
+  publisher: {...OPENAPI_PROPERTIES.podcastSpec.publisher},
+  image: {...OPENAPI_PROPERTIES.podcastSpec.image},
+  latest_episode_id: {...OPENAPI_PROPERTIES.podcastSpec.latest_episode_id},
+  latest_pub_date_ms: {...OPENAPI_PROPERTIES.podcastSpec.latest_pub_date_ms},
+  earliest_pub_date_ms: {...OPENAPI_PROPERTIES.podcastSpec.earliest_pub_date_ms},
+  total_episodes: {...OPENAPI_PROPERTIES.podcastSpec.total_episodes},
+  audio_length_sec: {...OPENAPI_PROPERTIES.podcastSpec.audio_length_sec},
+  update_frequency_hours: {...OPENAPI_PROPERTIES.podcastSpec.update_frequency_hours},
+  listen_score: {...OPENAPI_PROPERTIES.podcastSpec.listen_score},
+  listen_score_global_rank: {...OPENAPI_PROPERTIES.podcastSpec.listen_score_global_rank},
+}
+
 export const OPENAPI_RESPONSE_TMPL = {
   EPISODE_SIMPLE: {
     type: 'object',
     properties: {
-      id: {...OPENAPI_PROPERTIES.episodeSpec.id},
-      title: {...OPENAPI_PROPERTIES.episodeSpec.title},
-      description: {...OPENAPI_PROPERTIES.episodeSpec.description},
-      image: {...OPENAPI_PROPERTIES.episodeSpec.image},
-      audio: {...OPENAPI_PROPERTIES.episodeSpec.audio},
-      audio_length_sec: {...OPENAPI_PROPERTIES.episodeSpec.audio_length_sec},
-      pub_date_ms: {...OPENAPI_PROPERTIES.episodeSpec.pub_date_ms},
-      listennotes_url: {...OPENAPI_PROPERTIES.episodeSpec.listennotes_url},
+      ...EPISODE_COMPACT,
       podcast: {
         type: 'object',
         description: 'the podcast that this episode belongs to',
@@ -337,21 +358,20 @@ export const OPENAPI_RESPONSE_TMPL = {
 
   PODCAST_SIMPLE: {
     type: 'object',
+    properties: PODCAST_COMPACT,
+  },
+
+  PODCAST_FULL: {
+    type: 'object',
     properties: {
-      id: {...OPENAPI_PROPERTIES.podcastSpec.id},
-      title: {...OPENAPI_PROPERTIES.podcastSpec.title},
-      description: {...OPENAPI_PROPERTIES.podcastSpec.description},
-      listennotes_url: {...OPENAPI_PROPERTIES.podcastSpec.listennotes_url},
-      publisher: {...OPENAPI_PROPERTIES.podcastSpec.publisher},
-      image: {...OPENAPI_PROPERTIES.podcastSpec.image},
-      latest_episode_id: {...OPENAPI_PROPERTIES.podcastSpec.latest_episode_id},
-      latest_pub_date_ms: {...OPENAPI_PROPERTIES.podcastSpec.latest_pub_date_ms},
-      earliest_pub_date_ms: {...OPENAPI_PROPERTIES.podcastSpec.earliest_pub_date_ms},
-      total_episodes: {...OPENAPI_PROPERTIES.podcastSpec.total_episodes},
-      audio_length_sec: {...OPENAPI_PROPERTIES.podcastSpec.audio_length_sec},
-      update_frequency_hours: {...OPENAPI_PROPERTIES.podcastSpec.update_frequency_hours},
-      listen_score: {...OPENAPI_PROPERTIES.podcastSpec.listen_score},
-      listen_score_global_rank: {...OPENAPI_PROPERTIES.podcastSpec.listen_score_global_rank},
+      ...PODCAST_COMPACT,
+      episodes: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: EPISODE_COMPACT,
+        },
+      },
     },
   },
 
