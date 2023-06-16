@@ -367,6 +367,7 @@ export const OPENAPI_RESPONSE_TMPL = {
       ...PODCAST_COMPACT,
       episodes: {
         type: 'array',
+        description: 'most recent episodes of this podcast',
         items: {
           type: 'object',
           properties: EPISODE_COMPACT,
