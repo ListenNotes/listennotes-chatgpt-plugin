@@ -6,7 +6,7 @@ import ResponseBuilder from "../../../edge-src/common/ResponseBuilder";
 
 // 100 character max
 const descriptionForHuman = "The best podcast search engine and database. All podcasts and episodes. " +
-  "Built with PodcastAPI.com"
+  "Built with PodcastAPI.com."
 
 // 8,000 character max
 // Instruct the model on how to use your plugin generally
