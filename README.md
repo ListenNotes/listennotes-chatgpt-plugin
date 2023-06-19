@@ -12,7 +12,9 @@ This repository contains the source code for the Listen Notes ChatGPT plugin. Th
 ## Using the Plugin
 
 To use the Listen Notes ChatGPT plugin, you'll need to enable the plugin on [chat.openai.com](https://chat.openai.com/) first:
-<img width="724" alt="Screenshot 2023-06-19 at 10 11 25 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/6cbf8570-b1e7-4c83-b3f4-0576612b65b5">
+
+<img width="1062" alt="Screenshot 2023-06-19 at 12 16 11 PM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/0a4dbc00-c34c-40b4-b68d-048f3db6895f">
+
 
 You can try prompts like these:
 * "what are some recent podcast episodes talking about Sam Altman, in English"
@@ -21,7 +23,8 @@ You can try prompts like these:
 * "有哪些好的中文播客，关于犯罪的"
 * "find me some podcasts about charles manson"
 
-<img width="683" alt="Screenshot 2023-06-19 at 10 18 30 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/edacc151-7ea9-4f0c-992a-461bd7a7e567">
+<img width="683" alt="Screenshot 2023-06-19 at 10 18 30 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/4fd9973f-35a4-4d3c-be03-eb1732d2d38f">
+
 
 
 ## Running Locally
@@ -94,36 +97,42 @@ To deploy the Listen Notes ChatGPT plugin to production on [Cloudflare Pages](ht
 
 You'll setup deployment configuration like this:
 
- <img width="945" alt="Screenshot 2023-06-19 at 11 35 53 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/31f61947-a01d-466b-9523-4a90ac7d10c8">
+<img width="945" alt="Screenshot 2023-06-19 at 11 35 53 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/01e751cf-b008-44ea-99a2-733b74993bca">
+
 
 And setup environment variables:
 
-<img width="930" alt="Screenshot 2023-06-19 at 11 36 46 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/4ffc570d-598f-4aff-912c-f0de66eec1b6">
+<img width="930" alt="Screenshot 2023-06-19 at 11 36 46 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/0666e0e7-90ee-406b-9d49-9bd98e37ee6c">
+
 
 Note: At first, you may just put a random string for CHATGPT_VERIFICATION_TOKEN because you'll get the real verification token later from openapi.com.
 
 And setup custom domain for your Cloudflare Pages project:
 
-<img width="1290" alt="Screenshot 2023-06-19 at 11 43 43 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/06552010-21f7-4997-9033-b17e6b8ca8ec">
+<img width="1290" alt="Screenshot 2023-06-19 at 11 43 43 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/fb6a9be3-5583-4213-8ade-c3a64e01bbed">
+
 
 
 2) **[Test on chat.openai.com](https://chat.openai.com/)**
 
 Go to the Plugin store:
 
-<img width="1088" alt="Screenshot 2023-06-19 at 11 42 42 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/6fe88f94-3a53-45db-b2f9-de7f1febb04d">
+<img width="1088" alt="Screenshot 2023-06-19 at 11 42 42 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/92340335-5cdd-4c79-9dc7-c662417202cf">
+
 
 And follow the instructions to setup your plugin:
 
-<img width="391" alt="Screenshot 2023-06-19 at 11 45 18 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/7f5c3415-81e8-425e-a9b7-7abc870032ff">
+<img width="391" alt="Screenshot 2023-06-19 at 11 45 18 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/4c217822-1ef6-421d-933f-50462f97ce9e">
 
 You'll see the verification token, then go back to the Cloudflare Pages dashboard to setup the value of CHATGPT_VERIFICATION_TOKEN (you can delete the old variable and add a new one):
 
-<img width="1246" alt="Screenshot 2023-06-19 at 11 47 33 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/830f85ec-cd14-467a-a51b-a87e77695e57">
+<img width="1246" alt="Screenshot 2023-06-19 at 11 47 33 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/66b920bb-cc37-4901-a147-ed35ea04b9d9">
+
 
 To make your Cloudflare Pages project pick up the new CHATGPT_VERIFICATION_TOKEN value, you'll have to redeploy:
 
-<img width="483" alt="Screenshot 2023-06-19 at 11 48 45 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/7a4d0502-a535-43a6-a3b1-c371c8759ccb">
+<img width="483" alt="Screenshot 2023-06-19 at 11 48 45 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/409372ec-903f-4023-919a-46c69e3008b4">
+
 
 Then go back to the ChatGPT UI to verify the verification token.
 
