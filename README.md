@@ -77,9 +77,61 @@ curl -X GET --location "http://localhost:8788/api/v2/search_podcasts?q=nba" \
 
 ## Adapting the Plugin
 
-This plugin can be adapted to work with other APIs. To do this, you'll need to modify the endpoints and the corresponding functions in the code. Replace the PodcastAPI.com calls with calls to your chosen API, and update the data processing to match the structure of your new API's responses. Remember to update the ai-plugin.json and openapi.json to accurately reflect your new plugin's functionality.
+This plugin can be adapted to work with other APIs. To do this, you'll need to modify the endpoints and the corresponding functions in the code. 
+
+Specifically, you'll need to change three things:
+
+1) **Update [ai-plugin.json](./functions/.well-known/ai-plugin.json/index.js)**: Learn more on [openai.com](https://platform.openai.com/docs/plugins/getting-started/plugin-manifest).
+
+2) **Update [proxy endpoints](./functions/api/v2) with other APIs**: Those proxy endpoints are running on Cloudflare Pages edge to send API requests. You may want to learn [how Cloudflare Pages functions work](https://developers.cloudflare.com/pages/platform/functions/get-started/) first.
+
+3) **Update [openapi.json](./functions/chatgpt-plugin/openapi.json/index.js)**: ChatGPT relies on this openapi spec to know what proxy endpoints are available. You may want to learn more on [openai.com](https://platform.openai.com/docs/plugins/getting-started/openapi-definition).
+
+Replace the PodcastAPI.com calls with calls to your chosen API, and update the data processing to match the structure of your new API's responses. Remember to update the ai-plugin.json and openapi.json to accurately reflect your new plugin's functionality.
 
 ### Deploying to Production
 
 To deploy the Listen Notes ChatGPT plugin to production on [Cloudflare Pages](https://pages.cloudflare.com/), follow these steps:
 
+1) **[Create a Cloudflare Pages project](https://dash.cloudflare.com/sign-up/workers-and-pages)**
+
+You'll setup deployment configuration like this:
+
+ <img width="945" alt="Screenshot 2023-06-19 at 11 35 53 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/31f61947-a01d-466b-9523-4a90ac7d10c8">
+
+And setup environment variables:
+
+<img width="930" alt="Screenshot 2023-06-19 at 11 36 46 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/4ffc570d-598f-4aff-912c-f0de66eec1b6">
+
+Note: At first, you may just put a random string for CHATGPT_VERIFICATION_TOKEN because you'll get the real verification token later from openapi.com.
+
+And setup custom domain for your Cloudflare Pages project:
+
+<img width="1290" alt="Screenshot 2023-06-19 at 11 43 43 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/06552010-21f7-4997-9033-b17e6b8ca8ec">
+
+
+2) **[Test on chat.openai.com](https://chat.openai.com/)**
+
+Go to the Plugin store:
+
+<img width="1088" alt="Screenshot 2023-06-19 at 11 42 42 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/6fe88f94-3a53-45db-b2f9-de7f1febb04d">
+
+And follow the instructions to setup your plugin:
+
+<img width="391" alt="Screenshot 2023-06-19 at 11 45 18 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/7f5c3415-81e8-425e-a9b7-7abc870032ff">
+
+You'll see the verification token, then go back to the Cloudflare Pages dashboard to setup the value of CHATGPT_VERIFICATION_TOKEN (you can delete the old variable and add a new one):
+
+<img width="1246" alt="Screenshot 2023-06-19 at 11 47 33 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/830f85ec-cd14-467a-a51b-a87e77695e57">
+
+To make your Cloudflare Pages project pick up the new CHATGPT_VERIFICATION_TOKEN value, you'll have to redeploy:
+
+<img width="483" alt="Screenshot 2023-06-19 at 11 48 45 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/7a4d0502-a535-43a6-a3b1-c371c8759ccb">
+
+Then go back to the ChatGPT UI to verify the verification token.
+
+By this point, you should be able to test your plugin on chat.openai.com.
+
+### Submit for review
+
+To list your plugin on the Plugin Store, please refer to the guidelines provided on [this page](https://platform.openai.com/docs/plugins/review) for submitting your plugin for review.
