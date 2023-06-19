@@ -26,7 +26,7 @@ You can try prompts like these:
 
 ## Running Locally
 
-To run the Listen Notes ChatGPT plugin on your local development environment, follow these steps:
+To run this repo on your local development environment, follow these steps:
 
 **0) Install [Cloudflare Wrangler](https://developers.cloudflare.com/workers/wrangler/install-and-update/)**
 ```
