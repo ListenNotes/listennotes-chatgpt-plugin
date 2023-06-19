@@ -86,8 +86,6 @@ Specifically, you'll need to change three things:
 
 3) **Update [openapi.json](./functions/chatgpt-plugin/openapi.json/index.js)**: ChatGPT relies on this openapi spec to know what proxy endpoints are available. You may want to learn more on [openai.com](https://platform.openai.com/docs/plugins/getting-started/openapi-definition).
 
-Replace the PodcastAPI.com calls with calls to your chosen API, and update the data processing to match the structure of your new API's responses. Remember to update the ai-plugin.json and openapi.json to accurately reflect your new plugin's functionality.
-
 ### Deploying to Production
 
 To deploy the Listen Notes ChatGPT plugin to production on [Cloudflare Pages](https://pages.cloudflare.com/), follow these steps:
