@@ -7,7 +7,6 @@ This repository contains the source code for the Listen Notes ChatGPT plugin. Th
 - [Using the Plugin](#using-the-plugin)
 - [Running Locally](#running-locally)
 - [Deploying to Production](#deploying-to-production)
-- [Testing and Review](#testing-and-review)
 - [Adapting the Plugin](#adapting-the-plugin)
 
 ## Using the Plugin
