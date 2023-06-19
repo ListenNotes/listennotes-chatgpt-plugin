@@ -11,7 +11,7 @@ This repository contains the source code for the Listen Notes ChatGPT plugin. Th
 
 ## Using the Plugin
 
-To use the Listen Notes ChatGPT plugin, you'll need to enable the Listen Notes plugin first on [chat.openai.com](https://chat.openai.com/):
+To use the Listen Notes ChatGPT plugin, you'll need to enable the plugin on [chat.openai.com](https://chat.openai.com/) first:
 <img width="724" alt="Screenshot 2023-06-19 at 10 11 25 AM" src="https://github.com/ListenNotes/listennotes-chatgpt-plugin/assets/1719237/6cbf8570-b1e7-4c83-b3f4-0576612b65b5">
 
 You can try prompts like these:
