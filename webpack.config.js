@@ -1,7 +1,6 @@
 const path = require('path');
 const BundleTracker = require('webpack-bundle-tracker');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
 
@@ -30,9 +29,6 @@ const entry = {
 };
 
 module.exports = {
-
-  context: path.resolve(__dirname, './client-src'),
-
   entry,
 
   output: {
@@ -64,10 +60,6 @@ module.exports = {
       verbose: true,
       dry: false,
     }),
-
-    new MiniCssExtractPlugin({
-      filename: '[name]-[fullhash].css',
-    }),
   ],
 
   module: {
@@ -84,43 +76,6 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.less$/,
-        use: [{
-          loader: 'style-loader',
-        }, {
-          loader: 'css-loader',
-        }, {
-          loader: 'less-loader',
-        }],
-      },
-      {
-        test: /base.*\.css$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          { loader: 'css-loader', options: { url: false } },
-          'postcss-loader',
-        ],
-      },
-      {
-        test: /\.css$/,
-        exclude: /base.*\.css$/,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          { loader: 'css-loader', options: { url: false } },
-          // 'postcss-loader',
-        ],
-      },
-      // {
-      //   test: /\.png$/,
-      //   use: 'url-loader?name=[name]-[hash].[ext]&limit=8192&mimetype=image/png',
-      // },
-      // {
-      //   test: /\.svg$/,
-      //   use: ['@svgr/webpack'],
-      // },
     ],
   },
 
@@ -128,9 +83,6 @@ module.exports = {
     static: [
       {
         directory: path.join(__dirname, './public/'),
-      },
-      {
-        directory: path.join(__dirname, './client-src/'),
       },
     ],
     headers: {
