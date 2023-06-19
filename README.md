@@ -35,7 +35,7 @@ npm install -g wrangler
 
 **1) Clone the repository to your local machine.**
 ```
-git clone git@github.com:ListenNotes/listennotes-chatgpt-plugin.git
+git clone https://github.com/ListenNotes/listennotes-chatgpt-plugin.git
 ```
 
 **2) Install the necessary dependencies.**
