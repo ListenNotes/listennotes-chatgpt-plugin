@@ -51,8 +51,7 @@ export default class SearchEpisodesDef  extends BaseDef {
         schema: {
           type: 'array',
           items: {
-            type: 'object',
-            properties: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
+            ...OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
           },
         },
       },
