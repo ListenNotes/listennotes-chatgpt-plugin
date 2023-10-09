@@ -35,15 +35,15 @@ export async function onRequestGet(context) {
   const params = {
     baseUrl: data.baseUrl,
     paths: {
-      // ...new SearchPodcastsDef().openApiPathSpec(),
+      ...new SearchPodcastsDef().openApiPathSpec(),
       ...new SearchEpisodesDef().openApiPathSpec(),
-      // ...new BestPodcastsDef().openApiPathSpec(),
+      ...new BestPodcastsDef().openApiPathSpec(),
       ...new JustListenDef().openApiPathSpec(),
       ...new GetGenresDef().openApiPathSpec(),
       ...new GetLanguagesDef().openApiPathSpec(),
       ...new GetRegionsDef().openApiPathSpec(),
-      // ...new GetEpisodeDef().openApiPathSpec(),
-      // ...new GetPodcastDef().openApiPathSpec(),
+      ...new GetEpisodeDef().openApiPathSpec(),
+      ...new GetPodcastDef().openApiPathSpec(),
     },
   }
   return responseBuilder.getJsonResponse(openapiSpec(params))

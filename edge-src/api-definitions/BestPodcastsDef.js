@@ -40,8 +40,7 @@ export default class BestPodcastsDef  extends BaseDef {
         schema: {
           type: 'array',
           items: {
-            type: 'object',
-            properties: OPENAPI_RESPONSE_TMPL.PODCAST_SIMPLE,
+            ...OPENAPI_RESPONSE_TMPL.PODCAST_SIMPLE,
           },
         },
       },
