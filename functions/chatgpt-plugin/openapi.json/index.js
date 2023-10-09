@@ -37,9 +37,9 @@ export async function onRequestGet(context) {
     paths: {
       // ...new SearchPodcastsDef().openApiPathSpec(),
       // ...new SearchEpisodesDef().openApiPathSpec(),
-      ...new BestPodcastsDef().openApiPathSpec(),
+      // ...new BestPodcastsDef().openApiPathSpec(),
       ...new JustListenDef().openApiPathSpec(),
-      // ...new GetGenresDef().openApiPathSpec(),
+      ...new GetGenresDef().openApiPathSpec(),
       // ...new GetLanguagesDef().openApiPathSpec(),
       // ...new GetRegionsDef().openApiPathSpec(),
       // ...new GetEpisodeDef().openApiPathSpec(),
