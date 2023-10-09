@@ -309,13 +309,13 @@ export const OPENAPI_PARAMETERS = {
 
 const EPISODE_COMPACT = {
   id: {...OPENAPI_PROPERTIES.episodeSpec.id},
-  title: {...OPENAPI_PROPERTIES.episodeSpec.title},
-  description: {...OPENAPI_PROPERTIES.episodeSpec.description},
-  image: {...OPENAPI_PROPERTIES.episodeSpec.image},
-  audio: {...OPENAPI_PROPERTIES.episodeSpec.audio},
-  audio_length_sec: {...OPENAPI_PROPERTIES.episodeSpec.audio_length_sec},
-  pub_date_ms: {...OPENAPI_PROPERTIES.episodeSpec.pub_date_ms},
-  listennotes_url: {...OPENAPI_PROPERTIES.episodeSpec.listennotes_url},
+  // title: {...OPENAPI_PROPERTIES.episodeSpec.title},
+  // description: {...OPENAPI_PROPERTIES.episodeSpec.description},
+  // image: {...OPENAPI_PROPERTIES.episodeSpec.image},
+  // audio: {...OPENAPI_PROPERTIES.episodeSpec.audio},
+  // audio_length_sec: {...OPENAPI_PROPERTIES.episodeSpec.audio_length_sec},
+  // pub_date_ms: {...OPENAPI_PROPERTIES.episodeSpec.pub_date_ms},
+  // listennotes_url: {...OPENAPI_PROPERTIES.episodeSpec.listennotes_url},
 }
 
 const PODCAST_COMPACT = {
