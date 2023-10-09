@@ -35,7 +35,7 @@ export async function onRequestGet(context) {
   const params = {
     baseUrl: data.baseUrl,
     paths: {
-      // ...new SearchPodcastsDef().openApiPathSpec(),
+      ...new SearchPodcastsDef().openApiPathSpec(),
       // ...new SearchEpisodesDef().openApiPathSpec(),
       // ...new BestPodcastsDef().openApiPathSpec(),
       ...new JustListenDef().openApiPathSpec(),
