@@ -52,7 +52,7 @@ export default class SearchEpisodesDef  extends BaseDef {
           type: 'array',
           items: {
             type: 'object',
-            properties: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
+            // properties: OPENAPI_RESPONSE_TMPL.EPISODE_SIMPLE,
           },
         },
       },
